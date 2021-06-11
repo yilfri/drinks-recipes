@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { ModalContext } from '../context/ModalContext';
-
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 function getModalStyle() {
 	const top = 50;
@@ -100,6 +100,10 @@ const Recipe = ({ recipe }) => {
 			</div>
 		</div>
 	);
+};
+
+Recipe.propTypes = {
+	recipe: PropTypes.object.isRequired
 };
 
 export default Recipe;
