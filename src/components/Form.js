@@ -3,13 +3,13 @@ import { ContextCategories } from '../context/ContextCategories';
 import { RecipesContext } from '../context/RecipesContext';
 
 const Form = () => {
-	const { categories } = useContext(ContextCategories);
-	const { setNewSearch, setConsult } = useContext(RecipesContext);
-
 	const [search, setSearch] = useState({
 		name: '',
 		category: ''
 	});
+
+	const { categories } = useContext(ContextCategories);
+	const { setNewSearch, setConsult } = useContext(RecipesContext);
 
 	const handleChange = (e) => {
 		setSearch({

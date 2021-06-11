@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState, useEffect, createContext } from 'react';
+import axios from 'axios';
 
 export const RecipesContext = createContext();
 
@@ -16,11 +16,10 @@ const RecipesProvider = (props) => {
 	useEffect(() => {
 		if (consult) {
 			const getRecipes = async () => {
-				const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${name}&?c=${category}`;
+				const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${name}&c=${category}`;
 
 				const res = await axios.get(url);
 
-				/* console.log(res.data.drinks); */
 				setRecipes(res.data.drinks);
 			};
 			getRecipes();
