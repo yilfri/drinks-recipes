@@ -14,14 +14,13 @@ const ModalProvider = (props) => {
 			const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idRecipe}`;
 
 			const res = await axios.get(url);
-			console.log(res);
 
 			setRecipe(res.data.drinks[0]);
 		};
 		getRecipe();
 	}, [idRecipe]);
 	return (
-		<ModalContext.Provider value={{ information, setIdRecipe }}>
+		<ModalContext.Provider value={{ information, setIdRecipe, setRecipe }}>
 			{props.children}
 		</ModalContext.Provider>
 	);

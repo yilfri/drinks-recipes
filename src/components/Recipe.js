@@ -18,7 +18,7 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		position: 'absolute',
-		width: 600,
+		width: 400,
 		backgroundColor: theme.palette.background.paper,
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3)
@@ -39,8 +39,22 @@ const Recipe = ({ recipe }) => {
 		setOpen(false);
 	};
 
-	const { information, setIdRecipe } = useContext(ModalContext);
-	/* console.log(information); */
+	const { information, setIdRecipe, setRecipe } = useContext(ModalContext);
+
+	const pushIngredients = (information) => {
+		let ingredients = [];
+
+		for (let i = 1; i < 16; i++) {
+			if (information[`strIngredient${i}`]) {
+				ingredients.push(
+					<li key={information[`strIngredient${i}`]}>
+						{information[`strIngredient${i}`]} {information[`strMeasure${i}`]}
+					</li>
+				);
+			}
+		}
+		return ingredients;
+	};
 
 	return (
 		<div className="col-md-4 mb-3">
@@ -63,11 +77,23 @@ const Recipe = ({ recipe }) => {
 						open={open}
 						onClose={() => {
 							setIdRecipe(null);
+							setRecipe({});
 							handleClose();
 						}}
 					>
 						<div style={modalStyle} className={classes.paper}>
-							<h1>Desde modal</h1>
+							<h2 className="text-center">{information.strDrink}</h2>
+							<h3 className="mt-4">Instrucciones</h3>
+							<p>{information.strInstructions}</p>
+
+							<img
+								src={information.strDrinkThumb}
+								alt={information.strDrink}
+								className="img-fluid my-4"
+							/>
+
+							<h3>Ingredientes</h3>
+							{pushIngredients(information)}
 						</div>
 					</Modal>
 				</div>

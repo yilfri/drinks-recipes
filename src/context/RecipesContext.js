@@ -24,6 +24,7 @@ const RecipesProvider = (props) => {
 			};
 			getRecipes();
 		}
+		// eslint-disable-next-line
 	}, [newSearch]);
 
 	return (
